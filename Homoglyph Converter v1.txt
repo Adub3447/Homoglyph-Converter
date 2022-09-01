@@ -1,0 +1,46 @@
+'''
+Homoglyph
+still needs decrypt function and maybe replace the 's'
+'''
+letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', ' ', ',', '.', '!', '?']
+capLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z', ' ', ',', '.', '!', '?']
+greek = ['\u03B1', '\u03B2', 'c', '\u03B4', '\u03B5', 'f', 'g', '\u03B7', '\u03B9', 'j', '\u03BA', 'L', 'm', '\u03B7', '\u03C3', '\u03C1', 'Q', '\u0393', 's', '\u03C4', '\u03BC', '\u03BD', '\u03C9', '\u03C7', '\u03B3', 'z',' ', ',', '.', '!', '?']
+
+'''Receives a phrase from user input and convert it to greek symbols'''
+def encrypt(phrase):
+    result =[]
+    i=0
+    #phrase = input("Enter Input Phrase: ")
+    for i in range(len(phrase)):
+        if phrase[i] in capLetters:
+            choice = capLetters.index(phrase[i])
+            result.append(greek[choice])
+        else:
+            choice = letters.index(phrase[i])
+            result.append(greek[choice])
+            #print("no letters")
+    stringResult=[str(x)for x in result]
+    encryptedPhrase=''.join(stringResult)
+    print("Your encrypted phrase is " + encryptedPhrase)
+
+'''Receives a string of greek characters and converts them to english again'''
+def decrypt(phrase):
+    #inverse code here
+    print("**SORRY** Decrypt Function not yet implemented")
+
+validEncrypt = ['Encrypt', 'encrypt', 'e']
+validDecrypt= ['Decrypt', 'decrypt', 'd']
+mode ='default'
+attempted = False
+while (mode not in validDecrypt) and (mode not in validEncrypt):
+    if attempted == False:
+        mode = input("What would you like to do, Encrypt or Decrypt?")
+    if (mode not in validDecrypt) and (mode not in validEncrypt):
+        attempted = True
+        mode =input("Not a valid input, please type 'Encrypt' or 'Decrypt'.")
+if mode in validEncrypt:
+    phrase = input("Enter phrase to convert:")
+    encrypt(phrase)
+elif mode in validDecrypt:
+    phrase = input("Enter phrase to convert:")
+    decrypt(phrase)
